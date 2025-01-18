@@ -1,0 +1,37 @@
+{
+  "name": "connect-reqres",
+  "version": "0.0.0",
+  "description": "Common request and response helpers expected by most Connnect/Express middleware.",
+  "author": {
+    "name": "Damian Krzeminski",
+    "email": "pirxpilot@furkot.com",
+    "url": "https://pirxpilot.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pirxpilot/connect-reqres.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "connect-reqres",
+    "connect",
+    "express",
+    "request",
+    "response"
+  ],
+  "dependencies": {
+    "cookie": "~0 || ~1",
+    "cookie-signature": "~1",
+    "parseurl": "~1"
+  },
+  "devDependencies": {
+    "@pirxpilot/jshint": "~3"
+  },
+  "scripts": {
+    "test": "make check"
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ]
+}
