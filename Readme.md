@@ -28,6 +28,7 @@ app.use(reqres({
 
 `options.app` - is a reference to `connect` app that is exposed as `req.app` property
 `options.querystring` - is an object that provides `parse` method use to parse URL query string - by default `node:querystring` is used
+`options.trustProxy` - if falsy `reqres` will ignore `x-forwarded-host` and `x-forwarded-proto` headers - by default it is true
 
 The `reqres` middleware decorates `request` and `response` objects.
 Request decorations include:
