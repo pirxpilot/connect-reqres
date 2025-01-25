@@ -31,15 +31,25 @@
   "linter": {
     "enabled": true,
     "rules": {
+      "all": true,
+      "correctness": {
+        "useImportExtensions": "off",
+        "noNodejsModules": "off"
+      },
       "style": {
+        "noDoneCallback": "off",
         "useTemplate": "off",
-        "noParameterAssign": "off"
+        "noParameterAssign": "off",
+        "noYodaExpression": "off"
       },
       "performance": {
         "noDelete": "off"
       },
       "suspicious": {
         "noAssignInExpressions": "off"
+      },
+      "complexity": {
+        "noVoid": "off"
       }
     }
   }
