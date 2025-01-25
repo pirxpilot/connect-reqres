@@ -1,12 +1,15 @@
 check: lint test
 
 lint:
-	./node_modules/.bin/jshint *.js lib test
+	./node_modules/.bin/biome check
+
+format:
+	./node_modules/.bin/biome format --write
 
 test:
-	node --test
+	node --test $(TEST_OPTS)
 
-test-coverage:
-	node --test --experimental-test-coverage
+test-cov: TEST_OPTS := --experimental-test-coverage
+test-cov: test
 
-.PHONY: check lint test
+.PHONY: check lint format test test-cov
