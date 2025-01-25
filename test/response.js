@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 
 const response = require('../lib/response');
 
-test('res.sendStatus()', function (t) {
+test('res.sendStatus()', t => {
   const res = {
     writeHead() {
       return this;
@@ -22,7 +22,7 @@ test('res.sendStatus()', function (t) {
   assert.equal(res.end.mock.callCount(), 1);
 });
 
-test('res.send()', function (t) {
+test('res.send()', t => {
   const res = {
     hasHeader() {
       return false;
@@ -47,10 +47,13 @@ test('res.send()', function (t) {
     'Content-Type',
     'text/plain; charset=utf-8'
   ]);
-  assert.deepEqual(res.setHeader.mock.calls[1].arguments, ['Content-Length', 5]);
+  assert.deepEqual(res.setHeader.mock.calls[1].arguments, [
+    'Content-Length',
+    5
+  ]);
 });
 
-test('res.send() with buffer', function (t) {
+test('res.send() with buffer', t => {
   const res = {
     hasHeader() {
       return false;
@@ -75,10 +78,13 @@ test('res.send() with buffer', function (t) {
     'Content-Type',
     'application/octet-stream'
   ]);
-  assert.deepEqual(res.setHeader.mock.calls[1].arguments, ['Content-Length', 5]);
+  assert.deepEqual(res.setHeader.mock.calls[1].arguments, [
+    'Content-Length',
+    5
+  ]);
 });
 
-test('res.send() with object', function (t) {
+test('res.send() with object', t => {
   const res = {
     json() {
       return this;
@@ -92,7 +98,7 @@ test('res.send() with object', function (t) {
   assert.deepEqual(res.json.mock.calls[0].arguments, [{ hello: 'world' }]);
 });
 
-test('res.json()', function (t) {
+test('res.json()', t => {
   const res = {
     hasHeader() {
       return false;
@@ -117,10 +123,13 @@ test('res.json()', function (t) {
     'Content-Type',
     'application/json; charset=utf-8'
   ]);
-  assert.deepEqual(res.setHeader.mock.calls[1].arguments, ['Content-Length', 17]);
+  assert.deepEqual(res.setHeader.mock.calls[1].arguments, [
+    'Content-Length',
+    17
+  ]);
 });
 
-test('res.redirect()', function (t) {
+test('res.redirect()', t => {
   const res = {
     writeHead() {
       return this;
@@ -142,7 +151,7 @@ test('res.redirect()', function (t) {
   assert.equal(res.end.mock.callCount(), 1);
 });
 
-test('res.cookie()', function (t) {
+test('res.cookie()', t => {
   const res = {
     appendHeader() {
       return this;
@@ -159,7 +168,7 @@ test('res.cookie()', function (t) {
   ]);
 });
 
-test('res.cookie() signed', function (t) {
+test('res.cookie() signed', t => {
   const res = {
     appendHeader() {
       return this;
@@ -177,7 +186,7 @@ test('res.cookie() signed', function (t) {
   ]);
 });
 
-test('res.clearCookie()', function (t) {
+test('res.clearCookie()', t => {
   const res = {
     appendHeader() {
       return this;
@@ -194,7 +203,7 @@ test('res.clearCookie()', function (t) {
   ]);
 });
 
-test('res.locals must be memoized', function () {
+test('res.locals must be memoized', () => {
   const res = {};
   response()(res);
   res.locals.hello = 'world';
@@ -203,7 +212,7 @@ test('res.locals must be memoized', function () {
   assert.equal(res.locals.hello, 'universe');
 });
 
-test('res.header()', function (t) {
+test('res.header()', t => {
   const res = {
     setHeader() {
       return this;
@@ -214,10 +223,13 @@ test('res.header()', function (t) {
   response()(res);
   res.header('Content-Type', 'text/plain');
   assert.equal(res.setHeader.mock.callCount(), 1);
-  assert.deepEqual(res.setHeader.mock.calls[0].arguments, ['Content-Type', 'text/plain']);
+  assert.deepEqual(res.setHeader.mock.calls[0].arguments, [
+    'Content-Type',
+    'text/plain'
+  ]);
 });
 
-test('res.header() with object', function (t) {
+test('res.header() with object', t => {
   const res = {
     setHeader() {
       return this;
@@ -228,6 +240,12 @@ test('res.header() with object', function (t) {
 
   res.header({ 'Content-Type': 'application/json', 'Content-Length': 5 });
   assert.equal(res.setHeader.mock.callCount(), 2);
-  assert.deepEqual(res.setHeader.mock.calls[1].arguments, ['content-type', 'application/json']);
-  assert.deepEqual(res.setHeader.mock.calls[0].arguments, ['content-length', '5']);
+  assert.deepEqual(res.setHeader.mock.calls[1].arguments, [
+    'content-type',
+    'application/json'
+  ]);
+  assert.deepEqual(res.setHeader.mock.calls[0].arguments, [
+    'content-length',
+    '5'
+  ]);
 });
