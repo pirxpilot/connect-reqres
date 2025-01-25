@@ -24,14 +24,14 @@
     "cookie-signature": "~1",
     "parseurl": "~1"
   },
-  "devDependencies": {
-    "@pirxpilot/jshint": "~3"
-  },
   "scripts": {
     "test": "make check"
   },
   "files": [
     "index.js",
     "lib"
-  ]
+  ],
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4"
+  }
 }
