@@ -1,8 +1,7 @@
-const test = require('node:test');
-const assert = require('node:assert/strict');
-const { IncomingMessage, ServerResponse } = require('node:http');
-
-const reqres = require('../');
+import assert from 'node:assert/strict';
+import { IncomingMessage, ServerResponse } from 'node:http';
+import test from 'node:test';
+import reqres from '../index.js';
 
 test('reqres must create middleware', () => {
   const middleware = reqres();

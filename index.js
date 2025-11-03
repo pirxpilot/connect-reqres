@@ -1,13 +1,12 @@
-const request = require('./lib/request');
-const response = require('./lib/response');
+import request from './lib/request.js';
+import response from './lib/response.js';
 
-module.exports = reqres;
-Object.assign(module.exports, {
+Object.assign(reqres, {
   request,
   response
 });
 
-function reqres(opts = {}) {
+export default function reqres(opts = {}) {
   const decorateRequest = request(opts);
   const decorateResponse = response(opts);
   return (req, res, next) => {
