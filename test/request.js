@@ -1,7 +1,6 @@
-const test = require('node:test');
-const assert = require('node:assert/strict');
-
-const request = require('../lib/request');
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import request from '../lib/request.js';
 
 test('req.header()', () => {
   const req = {
